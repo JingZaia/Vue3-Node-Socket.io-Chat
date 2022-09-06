@@ -16,14 +16,12 @@ export default defineComponent({
         const router = useRouter();
         const socket: any = inject("socket");
 
-        let scrollBtn = ref<HTMLDivElement>();
         onMounted(() => {
             if (store.myInfo.name == '') {
                 router.push({
                     name: "Login"
                 });
             }
-            console.log(scrollBtn.value?.scrollTop);
             /*  socket.on("upPublicMsgData", (data: Array<ChatType>) => {
                  data.forEach((item, index) => {
                      if (!(index < store.publicChat.length)) {
@@ -53,11 +51,10 @@ export default defineComponent({
             })
             console.log('onupPublicMsgData', store.publicChat);
             // console.log(scrollBtn);
-            console.log(scrollBtn.value?.scrollTop);
 
         })
         return () => (
-            <div class={main['main']} ref={scrollBtn}>
+            <div class={main['main']} >
                 {
                     store.herInfo.name != '公共群聊' ?
                         store.privateChat.map(item => {

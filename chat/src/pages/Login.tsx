@@ -61,9 +61,7 @@ export default defineComponent({
                 name: name.value,
                 img: img.value || 'https://img0.baidu.com/it/u=181275341,2948213579&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
             })}>GO</button>
-            <Transition name="selectImg">
-                {bshow.value ? <SelectImg {...{ onVia: GetImg }}  {...{ onClose: close }} /> : ''}
-            </Transition>
+            {bshow.value ? <SelectImg {...{ onVia: GetImg }}  {...{ onClose: close }} /> : ''}
         </div>)
     }
 })
