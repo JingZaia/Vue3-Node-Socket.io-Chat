@@ -1,0 +1,37 @@
+*{
+  padding: 0;
+  list-style-type: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family:Microsoft YAHEI 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+//
+// $view-size:375 / 100;
+
+// 颜色
+$color-primary: #ffb300;
+$color-success: #55aaff;
+$color-warning: #ee1f1f;
+$color-error: #dd524d;
+$color-invert:white;
+//背景色
+$bg-color-default:white;
+$bg-color-invert:rgb(34, 34, 34,1);
+
+//边距
+$view-col-base:24px;
+
+.selectImg-enter-from,
+.selectImg-leave-to {
+  opacity: 0;
+}
+.selectImg-enter-active,
+.selectImg-leave-active {
+  transition: all 0.3s;
+}
+.selectImg-enter-to,
+.selectImg-leave-from {
+  opacity: 1;
+
+}

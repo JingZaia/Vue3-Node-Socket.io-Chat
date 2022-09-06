@@ -1,0 +1,55 @@
+@function invert($color, $amount: 100%) {
+    $inverse: change-color($color, $hue: hue($color) + 180);
+    @return mix($inverse, $color, $amount);
+}
+@import "../../style.scss";
+.main{
+    flex: 1;
+    padding:0 $view-col-base;
+    overflow: auto;
+}
+.chat-item{
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    .chat-img{
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+        }
+    }
+    .message{
+        max-width: 550px;
+        span{
+            white-space:inherit;
+            word-break: break-all;
+            display: block;
+            background-color: rgba(236, 239, 248,.8);
+            box-shadow: 3px 3px 10px 1px rgba(0,0,0,.07);
+            // color: white;
+            padding: 15px 10px; 
+            border-radius:20px;
+            border-top-left-radius: 0;
+            font-size: 38px;
+        }
+    }
+   
+}
+.my{
+    flex-direction: row-reverse;
+    .message{
+        span{
+            background-color: $color-primary;
+            border-radius:20px;
+            border-top-right-radius:0;
+        }
+    }
+}
+.time{
+    font-size: 18px;
+    text-align: center;
+    color: #999;
+    line-height: 60px;
+}

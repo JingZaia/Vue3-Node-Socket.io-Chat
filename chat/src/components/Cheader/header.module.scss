@@ -1,0 +1,29 @@
+@function invert($color, $amount: 100%) {
+    $inverse: change-color($color, $hue: hue($color) + 180);
+    @return mix($inverse, $color, $amount);
+}
+@import "../../style.scss";
+
+.header{
+    width: 100vw;
+    height: 88px;
+    background-color:$bg-color-default;
+    box-shadow: 0 1px 15px 2px  rgba(0,0,0,.1);
+    display: grid;
+    grid-template-columns:100px 1fr 100px ;
+    justify-items:center;
+    align-items: center;
+    // padding: 0 24px;
+}
+.title{
+    font-size: 38px;
+    font-weight: bold;
+}
+.icon{
+    width: 56px;
+    height:56px;
+    svg{
+        width: 56px;
+        height:56px;
+    }
+}

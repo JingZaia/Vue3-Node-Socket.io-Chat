@@ -1,0 +1,55 @@
+@function invert($color, $amount: 100%) {
+$inverse: change-color($color, $hue: hue($color) + 180);
+@return mix($inverse, $color, $amount);
+}
+@import "../../style.scss";
+
+
+.shade{
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.3);
+    display: flex;
+    align-items: flex-end;
+}
+.select-box{
+    position: fixed;
+    z-index: 12;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 40vh;
+    background-color:$bg-color-default ;
+    padding: 24px;
+    border-radius: 30px 30px 0 0;
+    animation: box .3s;
+    .title{
+        font-size: 30px;
+        line-height: 70px;
+        font-weight: bold;
+    }
+    .woman,.man{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        &-item{
+            width: 100px;
+            height: 100px;
+            background-size: 100% 100%;
+            border-radius: 20px;
+            background-color: #eee;
+        }
+    }
+}
+
+@keyframes box {
+    from{
+        bottom: -100%;
+    }
+    to{
+        bottom: 0;
+    }
+}

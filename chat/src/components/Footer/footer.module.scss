@@ -1,0 +1,58 @@
+@function invert($color, $amount: 100%) {
+    $inverse: change-color($color, $hue: hue($color) + 180);
+    @return mix($inverse, $color, $amount);
+}
+@import "../../style.scss";
+.footer-top{
+    width: 100%;
+    max-height: 108px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 24px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.1);
+    gap: 16px;
+    .footer-text{
+        display: block;
+        flex: 1;
+        outline: none;
+        border: 0;
+        resize: none;
+        background-color: rgba(236, 239, 248,.8);
+        font-size: 38px;
+        padding: 15px 11px;
+        font-family:Microsoft YaHei,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-radius: 20px;
+    }
+    .send{
+        width: 120px;
+        max-height: 80px;
+        outline: none;
+        border: 0;
+        font-size: 32px;
+        background-color: $color-primary;
+        color:white ;
+        border-radius: 20px;
+    }
+    .emoji{
+        display: flex;
+        align-items: center;
+    }
+}
+.icon{
+    width: 60px;
+    height: 60px;
+    svg{
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.ShowEmoji-enter-from{
+    height: 0;
+}
+.ShowEmoji-enter-active{
+    transition: all .3s;
+}
+.ShowEmoji-enter-to{
+    height: 500px;
+}
