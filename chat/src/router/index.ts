@@ -25,7 +25,7 @@ const routes = [
     {
         path: "/chat",
         name: "Chat",
-        component: () => import("../pages/App"),
+        component: () => import("../pages/Chat"),
     },
     {
         path: '/:pathMatch(.*)*', // 注意此处 404页面匹配规则和以前不相同，得采用这种配置方式才行
