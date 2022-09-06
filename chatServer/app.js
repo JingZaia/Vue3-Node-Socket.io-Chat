@@ -33,7 +33,8 @@ io.on('connection', socket => {
             data.uid = r;
             socket.name = data.uid;
             userList.push(data)
-            callback(true)
+            console.log(`${data.name}登录了`, data);
+            callback(true, data)
             io.emit('GetList', userList);
         } else {
             callback(false)

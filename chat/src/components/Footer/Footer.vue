@@ -64,6 +64,7 @@ const Send = async (value: string) => {
   if (store.herInfo.name != "公共群聊") {
     await socket.emit("privateChat", datas);
     store.privateChat.push(datas);
+    console.log("private", datas);
     Text.value = "";
   } else {
     await socket.emit("publicChat", datas);

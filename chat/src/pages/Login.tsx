@@ -22,7 +22,6 @@ export default defineComponent({
         const close = (value: boolean) => {
             bshow.value = value;
         }
-        console.log(Store.myInfo.uid);
         const Go = async (nameInfo: UserType) => {
             await socket.on('GetList', (List: Array<UserType>) => {
                 Store.userList = List;
