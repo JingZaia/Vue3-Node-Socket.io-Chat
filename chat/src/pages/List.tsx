@@ -5,25 +5,21 @@ import List from "../styles/List.module.scss";
 import { Socket } from "socket.io-client"
 import { log } from "console";
 import { useStore } from "../store"
-const store = useStore();
-interface Lists {
-    name: string,
-    img: string
-}
+import { UserType } from "../config"
 export default defineComponent({
     setup() {
+        const store = useStore();
         const socket: any = inject('socket');
         const router = useRouter();
         onMounted(() => {
-            if (store.userList.length < 1) {
+            if (!store.myInfo.name) {
                 router.push({
                     name: "Login"
                 });
             }
         })
-        const ToUser = (info: Lists) => {
-            store.herInfo.name = info.name;
-            store.herInfo.img = info.img;
+        const ToUser = (info: UserType) => {
+            store.herInfo = info;
             console.log(store.herInfo);
             router.push({
                 path: '/chat'
@@ -36,11 +32,11 @@ export default defineComponent({
             </div>
             <div class={List['main']}>
                 {store.userList.map(item => (
-                    <div class={List['main-item']} onClick={() => ToUser(item as Lists)}>
+                    <div class={List['main-item']} onClick={() => ToUser(item as UserType)}>
                         <img class={List['item-img']} src={item.img} alt="" />
                         <div class={List['item-right']}>
                             <div class={List['item-name']}>
-                                <span class={List['name']}>{item.name == store.myInfo.name ? `${item.name}(自己)` : item.name}</span>
+                                <span class={List['name']}>{item.uid == store.myInfo.uid ? `${item.name}(自己)` : item.name}</span>
                                 <span class={List['time']}></span>
                             </div>
                             <div class={List['item-msg']}></div>

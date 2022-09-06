@@ -1,6 +1,6 @@
 //限制接收数据类型
 interface ChatType {
-    name: string;
+    uid: string;
     receiver: string;
     img: string;
     message: string;

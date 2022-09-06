@@ -15,7 +15,7 @@ export const useStore = defineStore('main', {
     },
     getters: {
         msgList(): Array<ChatType> {
-            let data = this.privateChat.filter(item => item.name == this.myInfo.name && item.receiver == this.herInfo.name);
+            let data = this.privateChat.filter(item => item.uid == this.myInfo.uid && item.receiver == this.herInfo.uid);
             return data;
         }
     },

@@ -22,7 +22,7 @@ export default defineComponent({
         const close = (value: boolean) => {
             bshow.value = value;
         }
-        console.log(Store.userList);
+        console.log(Store.myInfo.uid);
         const Go = async (nameInfo: UserType) => {
             await socket.on('GetList', (List: Array<UserType>) => {
                 Store.userList = List;
@@ -31,8 +31,8 @@ export default defineComponent({
             if (nameInfo.name.length > 0) {
                 socket.emit('login', nameInfo, (flag: boolean) => {
                     if (flag) {
-                        Store.myInfo.name = nameInfo.name;
-                        Store.myInfo.img = nameInfo.img;
+                        Store.myInfo = nameInfo;
+                        // Store.myInfo.img = nameInfo.img;
                         Store.userList.push(nameInfo)
                         router.push({
                             path: "/list"

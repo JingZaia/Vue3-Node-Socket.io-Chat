@@ -11,7 +11,7 @@ export default defineComponent({
         const socket: any = inject("socket");
 
         onMounted(() => {
-            if (store.myInfo.name == '') {
+            if (!store.myInfo.name) {
                 router.push({
                     name: "Login"
                 });
@@ -47,14 +47,14 @@ export default defineComponent({
         return () => (
             <div class={main['main']} >
                 {
-                    store.herInfo.name != '公共群聊' ?
+                    store.herInfo.uid != '183144b61110a92beb2057c5e' ?
                         store.privateChat.map(item => {
-                            let receiver: boolean = (item.receiver == store.myInfo.name && item.name == store.herInfo.name);
-                            let sender: boolean = item.name == store.myInfo.name && item.receiver == store.herInfo.name;
+                            let receiver: boolean = (item.receiver == store.myInfo.uid && item.uid == store.herInfo.uid);
+                            let sender: boolean = item.uid == store.myInfo.uid && item.receiver == store.herInfo.uid;
                             if (receiver || sender) return (
                                 <>
                                     <div class={main['time']}>{item['time']}</div>
-                                    <div class={item.name == store.myInfo.name ? [main['chat-item'], main['my']] : main['chat-item']}>
+                                    <div class={item.uid == store.myInfo.uid ? [main['chat-item'], main['my']] : main['chat-item']}>
                                         <div class={main['chat-img']}>
                                             <img src={item.img} alt="" />
                                         </div>
@@ -66,7 +66,7 @@ export default defineComponent({
                             )
                         }) : store.publicChat.map(item => <>
                             <div class={main['time']}>{item['time']}</div>
-                            <div class={item.name == store.myInfo.name ? [main['chat-item'], main['my']] : main['chat-item']}>
+                            <div class={item.uid == store.myInfo.uid ? [main['chat-item'], main['my']] : main['chat-item']}>
                                 <div class={main['chat-img']}>
                                     <img src={item.img} alt="" />
                                 </div>

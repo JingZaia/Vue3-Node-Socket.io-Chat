@@ -31,6 +31,7 @@
 <script setup lang="ts">
 import VEmoji from "./components/emoji";
 import { useStore } from "../../store";
+import {UserType} from "../../config"
 import {
   ref,
   watchEffect,
@@ -54,8 +55,8 @@ watchEffect(() => {
 const Send = async (value: string) => {
   if (value.length < 1) return;
   const datas = {
-    name: store.myInfo.name,
-    receiver: store.herInfo.name,
+    uid: store.myInfo.uid,
+    receiver: store.herInfo.uid,
     img: store.myInfo.img,
     message: value,
     time: new Date(),

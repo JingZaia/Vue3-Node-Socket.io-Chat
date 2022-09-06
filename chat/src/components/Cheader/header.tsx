@@ -5,7 +5,6 @@ import { defineComponent, defineProps, onMounted } from "vue";
 import { useStore } from "../../store"
 import header from "./header.module.scss"
 export default defineComponent({
-
     setup(props, ctx) {
         let router: Router = useRouter();
         const store = useStore();
