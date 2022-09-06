@@ -10,13 +10,6 @@ interface Lists {
     name: string,
     img: string
 }
-interface ChatType {
-    name: string;
-    receiver: string;
-    img: string;
-    message: string;
-    time: Date;
-}
 export default defineComponent({
     setup() {
         const socket: any = inject('socket');
@@ -28,7 +21,6 @@ export default defineComponent({
                 });
             }
         })
-
         const ToUser = (info: Lists) => {
             store.herInfo.name = info.name;
             store.herInfo.img = info.img;

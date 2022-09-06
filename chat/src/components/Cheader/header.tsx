@@ -1,18 +1,21 @@
 
 
-import { useRouter } from "vue-router";
-import { defineComponent, defineProps } from "vue";
+import { useRouter, Router } from "vue-router";
+import { defineComponent, defineProps, onMounted } from "vue";
 import { useStore } from "../../store"
 import header from "./header.module.scss"
 export default defineComponent({
 
     setup(props, ctx) {
-        const router = useRouter();
+        let router: Router = useRouter();
         const store = useStore();
         const ToBack = () => {
             router.go(-1);
             // console.log("back", router.go(-1));
         }
+        onMounted(() => {
+            router = useRouter();
+        })
         return () => (
             <div class={header['header']}>
                 <div class={header.back} onClick={ToBack}>

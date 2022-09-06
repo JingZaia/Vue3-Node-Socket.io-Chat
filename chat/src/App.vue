@@ -7,11 +7,6 @@
 import { io } from "socket.io-client";
 import { onMounted, provide, inject, reactive } from "vue";
 onMounted(() => {});
-interface Lists {
-  name: string;
-  img: string;
-}
-
 const socket = io("http://localhost:3005");
 provide("socket", socket);
 // let getList = reactive<Array<Lists>>([]);

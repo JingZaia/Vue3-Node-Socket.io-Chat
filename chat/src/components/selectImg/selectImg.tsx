@@ -1,4 +1,3 @@
-import { log } from "console";
 import { ref, reactive, defineComponent, Teleport, onUnmounted } from "vue";
 import select from "./selectimg.module.scss";
 

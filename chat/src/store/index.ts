@@ -1,16 +1,10 @@
 import { log } from "console";
 import { defineStore } from "pinia";
 import { reactive, ref } from "vue"
+import { ChatType } from "../config"
 interface Lists {
     name: string,
     img: string
-}
-interface ChatType {
-    name: string,
-    receiver: string,
-    img: string,
-    message: string,
-    time: Date
 }
 export const useStore = defineStore('main', {
     state: () => {
@@ -38,12 +32,5 @@ export const useStore = defineStore('main', {
         }
     },
     actions: {
-        // GETLIST(value: Array<Lists>) {
-        //     this.userList = value
-        // }
-        GETLIST() {
-            return this.userList
-        },
-
     }
 })

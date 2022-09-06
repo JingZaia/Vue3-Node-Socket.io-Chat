@@ -3,13 +3,7 @@ import { ref, onMounted, reactive, defineComponent, getCurrentInstance, computed
 import { useRouter } from "vue-router"
 import { useStore } from "../../store"
 import main from "./main.module.scss";
-interface ChatType {
-    name: string,
-    receiver: string,
-    img: string,
-    message: string,
-    time: Date
-}
+import { ChatType } from "../../config"
 export default defineComponent({
     setup(props, { emit }) {
         const store = useStore();
@@ -40,7 +34,6 @@ export default defineComponent({
                 }
             })
             console.log("updataMsg", store.privateChat);
-
         });
 
         socket.on("upPublicMsgData", (data: Array<ChatType>) => {
@@ -50,8 +43,6 @@ export default defineComponent({
                 }
             })
             console.log('onupPublicMsgData', store.publicChat);
-            // console.log(scrollBtn);
-
         })
         return () => (
             <div class={main['main']} >

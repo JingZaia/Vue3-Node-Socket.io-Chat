@@ -25,7 +25,6 @@ let emoji = reactive([
 export default defineComponent({
     setup(props, ctx) {
         const sendEmoji = (value: string) => {
-            console.log(value);
             ctx.emit('emoji', value);
         }
         return () => (

@@ -41,21 +41,12 @@ import {
 } from "vue";
 const store = useStore();
 const socket: any = inject("socket");
-console.log(socket);
 let EmojiStatus = ref<boolean>(false);
 let Text = ref<string>("");
 let btnStatus = ref<boolean>(false);
-interface ChatType {
-  name: string;
-  receiver: string;
-  img: string;
-  message: string;
-  time: Date;
-}
 watchEffect(() => {
   btnStatus.value = Text.value ? Text.value.length > 0 : false;
 });
-
 // socket.on("updataMsg", (data: ChatType) => {
 //   console.log(data);
 //   store.privateChat.push(data);
