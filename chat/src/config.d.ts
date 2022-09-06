@@ -6,5 +6,10 @@ interface ChatType {
     message: string;
     time: Date;
 }
-
-export { ChatType }
+//用户数据类型
+interface UserType {
+    uid: string,
+    name: string,
+    img: string
+}
+export { ChatType, UserType }

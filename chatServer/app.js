@@ -9,6 +9,7 @@ const io = require("socket.io")(http, {
     }
 });
 let userList = [{
+    uid: '183144b61110a92beb2057c5e',
     name: '公共群聊',
     img: 'https://img1.baidu.com/it/u=2801025461,2053743915&fm=253&fmt=auto&app=138&f=JPEG?w=501&h=500'
 }]
@@ -26,7 +27,11 @@ io.on('connection', socket => {
             }
         }
         if (status) {
-            socket.name = data.name;
+            //生成唯一uid
+            let time = (new Date().getTime()).toString(16);
+            let r = time + ((Math.random()).toString(16)).replace('.', '');
+            data.uid = r;
+            socket.name = data.uid;
             userList.push(data)
             callback(true)
             io.emit('GetList', userList);
@@ -50,9 +55,9 @@ io.on('connection', socket => {
     })
 
     socket.on('disconnect', () => {
-        privateChat = privateChat.filter(item => item.name != socket.name);
+        privateChat = privateChat.filter(item => item.uid != socket.name);
         console.log(socket.name + "离开了", privateChat);
-        let i = userList.findIndex(item => item.name == socket.name);
+        let i = userList.findIndex(item => item.uid == socket.name);
         if (i != -1) {
             userList.splice(i, 1)
             io.emit('GetList', userList);
