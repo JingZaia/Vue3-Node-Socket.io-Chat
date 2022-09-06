@@ -32,7 +32,6 @@ const routes = [
         name: '404',
         component: () => import('../pages/404')
     }
-
 ]
 
 const router = createRouter({
