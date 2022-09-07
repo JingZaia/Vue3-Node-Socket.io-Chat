@@ -35,6 +35,7 @@ io.on('connection', socket => {
             userList.push(data)
             console.log(`${data.name}登录了`, data);
             callback(true, data)
+            // socket.broadcast.emit('upPublicMsgData', publicChat)
             io.emit('GetList', userList);
         } else {
             callback(false)
@@ -42,8 +43,13 @@ io.on('connection', socket => {
     })
     //公共群聊
     socket.on('publicChat', data => {
-        publicChat.push(data);
-        socket.broadcast.emit('upPublicMsgData', publicChat)
+        if (!data) {
+            console.log('login', publicChat);
+            socket.broadcast.emit('upPublicMsgData', publicChat)
+        } else {
+            publicChat.push(data);
+            socket.broadcast.emit('upPublicMsgData', publicChat)
+        }
     })
     //私聊
     socket.on('privateChat', (data) => {

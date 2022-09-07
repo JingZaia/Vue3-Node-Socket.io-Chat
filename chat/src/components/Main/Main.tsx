@@ -6,12 +6,12 @@ import main from "./main.module.scss";
 import { ChatType } from "../../config"
 export default defineComponent({
     setup(props, { emit }) {
-        const store = useStore();
+        const Store = useStore();
         const router = useRouter();
         const socket: any = inject("socket");
-
+        let scroll = ref<HTMLDivElement>()
         onMounted(() => {
-            if (!store.myInfo.name) {
+            if (!Store.myInfo.name) {
                 router.push({
                     name: "Login"
                 });
@@ -29,32 +29,39 @@ export default defineComponent({
 
         socket.on("updataMsg", (data: Array<ChatType>) => {
             data.forEach((item, index) => {
-                if (!(index < store.privateChat.length)) {
-                    store.privateChat.push(item);
+                if (!(index < Store.privateChat.length)) {
+                    Store.privateChat.push(item);
                 }
             })
-            console.log("updataMsg", store.privateChat);
         });
+
 
         socket.on("upPublicMsgData", (data: Array<ChatType>) => {
             data.forEach((item, index) => {
-                if (!(index < store.publicChat.length)) {
-                    store.publicChat.push(item);
+                if (!(index < Store.publicChat.length)) {
+                    Store.publicChat.push(item);
                 }
             })
-            console.log('onupPublicMsgData', store.publicChat);
+
+            nextTick(() => {
+                console.log("div", scroll.value?.scrollHeight);
+                scroll.value?.scrollIntoView();
+                scroll.value?.scrollIntoView(false);
+                scroll.value?.scrollIntoView({ block: "end" });
+                scroll.value?.scrollIntoView({ behavior: "instant", block: "end", inline: "nearest" })
+            })
         })
         return () => (
-            <div class={main['main']} >
+            <div class={main['main']} ref={scroll}>
                 {
-                    store.herInfo.uid != '183144b61110a92beb2057c5e' ?
-                        store.privateChat.map(item => {
-                            let receiver: boolean = (item.receiver == store.myInfo.uid && item.uid == store.herInfo.uid);
-                            let sender: boolean = item.uid == store.myInfo.uid && item.receiver == store.herInfo.uid;
+                    Store.herInfo.uid != '183144b61110a92beb2057c5e' ?
+                        Store.privateChat.map(item => {
+                            let receiver: boolean = (item.receiver == Store.myInfo.uid && item.uid == Store.herInfo.uid);
+                            let sender: boolean = item.uid == Store.myInfo.uid && item.receiver == Store.herInfo.uid;
                             if (receiver || sender) return (
                                 <>
-                                    <div class={main['time']}>{item['time']}</div>
-                                    <div class={item.uid == store.myInfo.uid ? [main['chat-item'], main['my']] : main['chat-item']}>
+                                    {/* <div class={main['time']}>{item['time']}</div> */}
+                                    <div class={item.uid == Store.myInfo.uid ? [main['chat-item'], main['my']] : main['chat-item']}>
                                         <div class={main['chat-img']}>
                                             <img src={item.img} alt="" />
                                         </div>
@@ -64,9 +71,9 @@ export default defineComponent({
                                     </div>
                                 </>
                             )
-                        }) : store.publicChat.map(item => <>
-                            <div class={main['time']}>{item['time']}</div>
-                            <div class={item.uid == store.myInfo.uid ? [main['chat-item'], main['my']] : main['chat-item']}>
+                        }) : Store.publicChat.map(item => <>
+                            {/* <div class={main['time']}>{item['time']}</div> */}
+                            <div class={item.uid == Store.myInfo.uid ? [main['chat-item'], main['my']] : main['chat-item']}>
                                 <div class={main['chat-img']}>
                                     <img src={item.img} alt="" />
                                 </div>

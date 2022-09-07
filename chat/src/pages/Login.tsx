@@ -4,7 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import SelectImg from "../components/selectImg/selectImg";
 import { useStore } from "../store";
 import login from "../styles/Login.module.scss";
-import { UserType } from "../config"
+import { UserType, ChatType } from "../config"
 export default defineComponent({
     setup() {
         const Store = useStore();
@@ -26,16 +26,16 @@ export default defineComponent({
             await socket.on('GetList', (List: Array<UserType>) => {
                 Store.userList = List;
             })
-            // let status: boolean = Store.userList.some(item => item.name == nameInfo.name);
             if (nameInfo.name.length > 0) {
                 socket.emit('login', nameInfo, (flag: boolean, data: UserType) => {
                     if (flag) {
                         Store.myInfo = data;
-                        // Store.myInfo.img = nameInfo.img;
                         Store.userList.push(data)
+                        socket.emit("publicChat");
                         router.push({
                             path: "/list"
                         })
+
                     } else {
                         console.error('用户已经存在');
                         warn.value = '用户已经存在';
