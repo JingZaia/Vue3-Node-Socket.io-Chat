@@ -57,6 +57,7 @@ io.on('connection', socket => {
 
     socket.on('disconnect', () => {
         privateChat = privateChat.filter(item => item.uid != socket.name);
+        publicChat = publicChat.filter(item => item.uid != socket.name);
         console.log(socket.name + "离开了", privateChat);
         let i = userList.findIndex(item => item.uid == socket.name);
         if (i != -1) {

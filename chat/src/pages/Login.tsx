@@ -28,11 +28,11 @@ export default defineComponent({
             })
             // let status: boolean = Store.userList.some(item => item.name == nameInfo.name);
             if (nameInfo.name.length > 0) {
-                socket.emit('login', nameInfo, (flag: boolean) => {
+                socket.emit('login', nameInfo, (flag: boolean, data: UserType) => {
                     if (flag) {
-                        Store.myInfo = nameInfo;
+                        Store.myInfo = data;
                         // Store.myInfo.img = nameInfo.img;
-                        Store.userList.push(nameInfo)
+                        Store.userList.push(data)
                         router.push({
                             path: "/list"
                         })
