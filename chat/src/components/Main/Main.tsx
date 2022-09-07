@@ -16,15 +16,9 @@ export default defineComponent({
                     name: "Login"
                 });
             }
-            /*  socket.on("upPublicMsgData", (data: Array<ChatType>) => {
-                 data.forEach((item, index) => {
-                     if (!(index < store.publicChat.length)) {
-                         store.publicChat.push(item);
-                     }
-                 })
-                 console.log('onupPublicMsgData', store.publicChat);
-                 console.log(scrollBtn.value?.scrollTop);
-             }) */
+            nextTick(() => {
+                scroll.value?.scroll(0, scroll.value?.scrollHeight)
+            })
         })
 
         socket.on("updataMsg", (data: Array<ChatType>) => {
