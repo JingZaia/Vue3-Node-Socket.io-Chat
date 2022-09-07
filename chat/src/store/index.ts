@@ -11,8 +11,10 @@ export const useStore = defineStore('main', {
         }
     },
     getters: {
-
     },
     actions: {
+        Scroll() {
+
+        }
     }
 })

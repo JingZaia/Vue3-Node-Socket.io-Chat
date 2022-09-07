@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="footer-top">
       <textarea class="footer-text" v-model="Text"></textarea>
-      <div class="emoji" @click="() => (EmojiStatus = !EmojiStatus)">
+      <div class="emoji" @click="Show">
         <i class="icon">
           <svg
             viewBox="0 0 1025 1024"
@@ -39,6 +39,7 @@ import {
   defineProps,
   inject,
   reactive,
+  nextTick
 } from "vue";
 const store = useStore();
 const socket: any = inject("socket");
@@ -48,6 +49,12 @@ let btnStatus = ref<boolean>(false);
 watchEffect(() => {
   btnStatus.value = Text.value ? Text.value.length > 0 : false;
 });
+
+const Show=()=>{
+  EmojiStatus.value = !EmojiStatus.value
+    const div=document.getElementById('Main')
+    div?.scroll(0,div.scrollHeight)
+}
 // socket.on("updataMsg", (data: ChatType) => {
 //   console.log(data);
 //   store.privateChat.push(data);
@@ -72,6 +79,11 @@ const Send = async (value: string) => {
     store.publicChat.push(datas);
     Text.value = "";
   }
+  nextTick(()=>{
+    const div=document.getElementById('Main')
+    div?.scroll(0,div.scrollHeight)
+  })
+
 };
 </script>
 <style scoped lang="scss">

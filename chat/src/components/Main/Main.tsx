@@ -33,6 +33,9 @@ export default defineComponent({
                     Store.privateChat.push(item);
                 }
             })
+            nextTick(() => {
+                scroll.value?.scroll(0, scroll.value?.scrollHeight)
+            })
         });
 
 
@@ -42,17 +45,12 @@ export default defineComponent({
                     Store.publicChat.push(item);
                 }
             })
-
             nextTick(() => {
-                console.log("div", scroll.value?.scrollHeight);
-                scroll.value?.scrollIntoView();
-                scroll.value?.scrollIntoView(false);
-                scroll.value?.scrollIntoView({ block: "end" });
-                scroll.value?.scrollIntoView({ behavior: "instant", block: "end", inline: "nearest" })
+                scroll.value?.scroll(0, scroll.value?.scrollHeight)
             })
         })
         return () => (
-            <div class={main['main']} ref={scroll}>
+            <div class={main['main']} ref={scroll} id="Main">
                 {
                     Store.herInfo.uid != '183144b61110a92beb2057c5e' ?
                         Store.privateChat.map(item => {
