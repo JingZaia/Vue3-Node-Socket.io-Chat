@@ -14,6 +14,7 @@ JingZaia/Vue3-Node-Socket.io-Chat
 ### server
 ``` bash
     //Going to the Server Directory
+    cd chatServer
     //initialize
     npm install
     
