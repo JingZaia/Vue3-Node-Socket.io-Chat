@@ -5,6 +5,7 @@ JingZaia/Vue3-Node-Socket.io-Chat
 ```bash
     //The client directory is displayed
     cd chat
+    
     //initialize
     npm install
     
@@ -15,6 +16,7 @@ JingZaia/Vue3-Node-Socket.io-Chat
 ``` bash
     //Going to the Server Directory
     cd chatServer
+    
     //initialize
     npm install
     
